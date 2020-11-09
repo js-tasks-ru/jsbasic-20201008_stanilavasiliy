@@ -5,8 +5,9 @@ export default class Carousel {
     this.slides = slides;
 
     this.createCaruselElement();
-    document.addEventListener('DOMContentLoaded', () => this.initCarusel());
-    document.addEventListener('DOMContentLoaded', () => this.addProduct());
+
+    this.initCarusel();
+    this.addProduct();
   }
 
   
@@ -68,23 +69,24 @@ export default class Carousel {
     //assembling elements
     caruselArrowRight.append(imgCaruselArrowRight);
     caruselArrowLeft.append(imgCaruselArrowLeft);
-    this.elem.append(caruselArrowRight, caruselArrowLeft, caruselInner);    
+    this.elem.append(caruselArrowRight, caruselArrowLeft, caruselInner);   
+    
   }
 
 
   initCarusel() {
-    let carouselArrowRight = document.querySelectorAll('.carousel__arrow_right')[0];
-    let carouselArrowLeft = document.querySelectorAll('.carousel__arrow_left')[0];
-    let carouselInnerElement = document.querySelectorAll('.carousel__inner')[0];
-    let carouselShiftValue = document.querySelectorAll('.carousel__img')[0].offsetWidth;
-    let carouselLength = document.querySelectorAll('.carousel__img').length;
+    let carouselArrowRight = this.elem.querySelectorAll('.carousel__arrow_right')[0];
+    let carouselArrowLeft = this.elem.querySelectorAll('.carousel__arrow_left')[0];
+    let carouselInnerElement = this.elem.querySelectorAll('.carousel__inner')[0];
+    let carouselImg = this.elem.querySelectorAll('.carousel__img')[0];
+    let carouselLength = this.elem.querySelectorAll('.carousel__img').length;
     let carouselCounter = 0;
   
     carouselArrowLeft.style.display = 'none';
   
     carouselArrowRight.addEventListener('click', () => {
       carouselCounter++;
-      carouselInnerElement.style.transform = `translateX(-${carouselShiftValue * carouselCounter}px)`;
+      carouselInnerElement.style.transform = `translateX(-${carouselImg.offsetWidth * carouselCounter}px)`;
   
       if (carouselCounter == carouselLength - 1) {
         carouselArrowRight.style.display = 'none';
@@ -95,7 +97,7 @@ export default class Carousel {
   
     carouselArrowLeft.addEventListener('click', () => {
       carouselCounter--;
-      carouselInnerElement.style.transform = `translateX(-${carouselShiftValue * carouselCounter}px)`;
+      carouselInnerElement.style.transform = `translateX(-${carouselImg.offsetWidth * carouselCounter}px)`;
   
       if (carouselCounter == 0) {
         carouselArrowLeft.style.display = 'none';
@@ -106,7 +108,7 @@ export default class Carousel {
   }
 
 
-  addProduct () {
+  addProduct() {
     this.elem.addEventListener('click', (event) => {
 
       if (event.target.classList.contains('carousel__button')) {
