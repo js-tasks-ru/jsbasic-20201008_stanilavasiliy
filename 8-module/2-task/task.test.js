@@ -16,6 +16,7 @@ describe('8-module-2-task', () => {
 
   describe('отрисовка', () => {
     it('после создания должны быть показаны карточки для всех товаров', () => {
+      
       let productCardsElements = productsGrid.elem.querySelectorAll('.card');
 
       expect(productCardsElements.length).toBe(products.length);

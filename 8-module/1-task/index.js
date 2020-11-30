@@ -58,7 +58,6 @@ export default class CartIcon {
         this.elem.style.position = 'fixed';
         this.elem.style.left = this.elemLeft + 'px';
         this.elem.style.top = this.elemTop + 'px';
-        console.log(this.elemLeft);
 
       } else {
 
