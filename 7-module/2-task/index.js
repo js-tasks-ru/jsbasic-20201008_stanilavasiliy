@@ -4,10 +4,10 @@ export default class Modal {
   constructor() {
     this.title = document.createElement('h3');
     this.modalBody = document.createElement('div');
+    this.modal = document.createElement('div');
   }
 
   open() {
-    this.modal = document.createElement('div');
     let modalOverlay = document.createElement('div');
     let modalInner = document.createElement('div');
     let modalHeader = document.createElement('div');

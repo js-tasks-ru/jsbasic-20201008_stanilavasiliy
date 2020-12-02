@@ -52,10 +52,10 @@ export default class Cart {
   isEmpty() {
 
     for (let cartItem of this.cartItems) {
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
   }
 
   getTotalCount() {
