@@ -52,20 +52,19 @@ export default class Modal {
 
   closeHandler() {
     document.addEventListener('click', event => {
-      
+
       if (event.target.closest('.modal__close')) {
         this.close();
       }
-    }, {once: true});
+    });
 
     document.addEventListener('keydown', event => {
 
-      if (document.body.classList.contains('is-modal-open')) {
-        
-        if (event.code === 'Escape') {
+      if (event.code === 'Escape') {
+        if (document.body.classList.contains('is-modal-open')) {
           this.close();
         }
       }
-    });
+    }, {once: true});
   }
 }
