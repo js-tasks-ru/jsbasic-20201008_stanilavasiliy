@@ -60,9 +60,12 @@ export default class Modal {
 
     document.addEventListener('keydown', event => {
 
-      if (event.code === 'Escape') {
-        this.close();
+      if (document.body.classList.contains('is-modal-open')) {
+        
+        if (event.code === 'Escape') {
+          this.close();
+        }
       }
-    }, {once: true});
+    });
   }
 }
