@@ -111,8 +111,8 @@ export default class Carousel {
   addProduct() {
     this.elem.addEventListener('click', (event) => {
 
-      if (event.target.classList.contains('carousel__button')) {
-        this.elem.dispatchEvent(new CustomEvent("product-add", {
+      if (event.target.closest('.carousel__button')) {
+        this.elem.dispatchEvent(new CustomEvent('product-add', {
           detail: event.target.closest('.carousel__slide').dataset.id,
           bubbles: true,
         }));

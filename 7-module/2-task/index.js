@@ -4,10 +4,10 @@ export default class Modal {
   constructor() {
     this.title = document.createElement('h3');
     this.modalBody = document.createElement('div');
+    this.modal = document.createElement('div');
   }
 
   open() {
-    this.modal = document.createElement('div');
     let modalOverlay = document.createElement('div');
     let modalInner = document.createElement('div');
     let modalHeader = document.createElement('div');
@@ -47,22 +47,30 @@ export default class Modal {
 
   close() {
     document.body.classList.remove('is-modal-open');
-    this.modal.remove();
+    try {
+      let modal = document.querySelector('.modal');
+      modal.remove();
+    } catch {
+    }
   }
 
   closeHandler() {
-    document.addEventListener('click', event => {
-      
-      if (event.target.closest('.modal__close')) {
+    document.addEventListener('click', event => this.clickCloseHandler(event));
+
+    document.addEventListener('keydown', event => this.escapeCloleHandler(event));
+  }
+
+  clickCloseHandler(event) {
+    if (event.target.closest('.modal__close')) {
+      this.close();
+    }
+  }
+
+  escapeCloleHandler(event) {
+    if (event.code === 'Escape') {
+      if (document.body.classList.contains('is-modal-open')) {
         this.close();
       }
-    }, {once: true});
-
-    document.addEventListener('keydown', event => {
-
-      if (event.code === 'Escape') {
-        this.close();
-      }
-    }, {once: true});
+    }
   }
 }
