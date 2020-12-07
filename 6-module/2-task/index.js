@@ -52,7 +52,6 @@ export default class ProductCard {
 
   cardEventListener () {
     this.elem.addEventListener('click', () => {
-      console.log('click');
       this.elem.dispatchEvent(new CustomEvent('product-add', {
         detail: this.product.id,
         bubbles: true,
