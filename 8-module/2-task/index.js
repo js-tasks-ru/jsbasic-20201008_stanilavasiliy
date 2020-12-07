@@ -110,4 +110,8 @@ export default class ProductsGrid {
       }));
     }
   }
+
+  functionForDelete() {
+    return;
+  }
 }
