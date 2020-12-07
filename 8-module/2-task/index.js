@@ -17,6 +17,8 @@ export default class ProductsGrid {
     }
 
     this.createDOM();
+
+    this.elem.addEventListener('click', event => this.addProductHandler(event));
   }
   
 
@@ -37,6 +39,7 @@ export default class ProductsGrid {
 
       if (product.visibility) {
         let productCard = new ProductCard(product);
+        productCard.elem.dataset.id = product.id;
         productCards.append(productCard.elem);
       }
     }
@@ -96,5 +99,15 @@ export default class ProductsGrid {
     }
 
     this.createDOM();
+  }
+
+  addProductHandler(event) {
+
+    if (event.target.closest('.card')) {
+      this.elem.dispatchEvent(new CustomEvent('product-add', {
+        detail: event.target.closest('.card').dataset.id,
+        bubbles: true,
+      }));
+    }
   }
 }

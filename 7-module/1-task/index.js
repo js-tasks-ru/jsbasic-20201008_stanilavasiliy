@@ -3,6 +3,7 @@ import createElement from '../../assets/lib/create-element.js';
 export default class RibbonMenu {
   constructor(categories) {
     this.categories = categories;
+    this.value = '';
 
     this.createDOM();
     this.arrowListener();

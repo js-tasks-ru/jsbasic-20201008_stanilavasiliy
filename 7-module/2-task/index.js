@@ -47,24 +47,30 @@ export default class Modal {
 
   close() {
     document.body.classList.remove('is-modal-open');
-    this.modal.remove();
+    try {
+      let modal = document.querySelector('.modal');
+      modal.remove();
+    } catch {
+    }
   }
 
   closeHandler() {
-    document.addEventListener('click', event => {
+    document.addEventListener('click', event => this.clickCloseHandler(event));
 
-      if (event.target.closest('.modal__close')) {
+    document.addEventListener('keydown', event => this.escapeCloleHandler(event));
+  }
+
+  clickCloseHandler(event) {
+    if (event.target.closest('.modal__close')) {
+      this.close();
+    }
+  }
+
+  escapeCloleHandler(event) {
+    if (event.code === 'Escape') {
+      if (document.body.classList.contains('is-modal-open')) {
         this.close();
       }
-    });
-
-    document.addEventListener('keydown', event => {
-
-      if (event.code === 'Escape') {
-        if (document.body.classList.contains('is-modal-open')) {
-          this.close();
-        }
-      }
-    }, {once: true});
+    }
   }
 }
